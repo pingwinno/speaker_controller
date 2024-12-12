@@ -3,7 +3,7 @@ name: Publish to GHCR
 on:
   push:
     branches:
-      - main  # Trigger the action on pushes to the main branch
+      - mock  # Trigger the action on pushes to the mock branch
 
 jobs:
   build-and-push:
