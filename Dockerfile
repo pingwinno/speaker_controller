@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN mkdir /usr/src/app/settings
 COPY *.py /usr/src/app
 
-CMD [ "python", "./main.py" ]
+CMD [ "python", "/usr/src/app/main.py" ]
