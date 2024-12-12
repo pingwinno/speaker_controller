@@ -45,6 +45,7 @@ def on_message(client, userdata, message):
         mqttc.publish("/settings", payload=speaker_comm.get_settings().to_json(), qos=2)
     except IOError:
         mqttc.publish("/error", payload="Request failed")
+        log.exception(f"Request failed")
 
 
 def on_connect(client, userdata, flags, reason_code, properties):
@@ -58,7 +59,7 @@ def on_connect(client, userdata, flags, reason_code, properties):
 
 
 def on_publish(client, userdata, mid, reason_code, properties):
-    log.debug("message published")
+    log.debug(f"message published {mid}")
 
 
 def get_client():
