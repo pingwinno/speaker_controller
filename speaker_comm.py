@@ -74,6 +74,14 @@ def start_bus(retry_counter):
         else:
             raise IOError
 
+def change_state(state):
+    print(f"code is {state}")
+    if state == 0:
+        disable()
+    elif state == 1:
+        enable()
+    else:
+        logging.info("wrong code")
 
 def enable():
     try:
