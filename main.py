@@ -1,6 +1,6 @@
 import logging
 import os
-from pydoc_data.topics import topics
+from pydoc_data.topics import functions
 
 import paho.mqtt.client as mqtt
 
@@ -14,7 +14,7 @@ mqtt_url = os.environ['MQTT_URL']
 mqtt_port = int(os.environ['MQTT_PORT'])
 
 
-topics = {
+functions = {
     "/state": speaker_comm.change_state,
     "/volume": speaker_comm.set_volume,
     "/sw": speaker_comm.set_sw,
@@ -38,10 +38,10 @@ def on_unsubscribe(client, userdata, mid, reason_code_list, properties):
 
 
 def on_message(client, userdata, message):
-    log.debug(f"Inconming value {message.payload.decode()} for setting {topics[message.topic]}")
+    log.debug(f"Inconming value {message.payload.decode()} for setting {functions[message.topic]}")
     try:
         log.debug(f"message: {message.topic}")
-        topics[message.topic](int(message.payload.decode()))
+        functions[message.topic](int(message.payload.decode()))
         mqttc.publish("/settings", payload=speaker_comm.get_settings().to_json(), qos=2)
     except IOError:
         mqttc.publish("/error", payload="Request failed")
@@ -52,7 +52,7 @@ def on_connect(client, userdata, flags, reason_code, properties):
     if reason_code.is_failure:
         log.error(f"Failed to connect: {reason_code}. loop_forever() will retry connection")
     else:
-        for topic in topics:
+        for topic in functions:
             client.subscribe(topic)
             log.info(f"Subscribed to topic: {topic}")
         mqttc.publish("/settings", payload=speaker_comm.get_settings().to_json())
