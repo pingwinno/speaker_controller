@@ -34,7 +34,9 @@ if os.path.exists("settings/settings.bin"):
 
 def change_state(state):
     print(f"code is {state}")
-    if state == 0:
+    if state == settings.state:
+        return
+    elif state == 0:
         disable()
     elif state == 1:
         enable()
