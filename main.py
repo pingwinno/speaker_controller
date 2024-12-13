@@ -18,7 +18,9 @@ functions = {
     "/state": speaker_comm.change_state,
     "/volume": speaker_comm.set_volume,
     "/sw": speaker_comm.set_sw,
-    "/input": speaker_comm.set_input
+    "/bass": speaker_comm.set_bass,
+    "/treble": speaker_comm.set_treble,
+    "/balance": speaker_comm.set_balance
 }
 
 
