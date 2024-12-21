@@ -1,6 +1,5 @@
 import logging
 import os
-from pydoc_data.topics import functions
 
 import paho.mqtt.client as mqtt
 
