@@ -13,14 +13,14 @@ log = logging.getLogger()
 mqtt_url = os.environ['MQTT_URL']
 mqtt_port = int(os.environ['MQTT_PORT'])
 
-
 functions = {
     "/state": speaker_comm.change_state,
     "/volume": speaker_comm.set_volume,
     "/sw": speaker_comm.set_sw,
     "/bass": speaker_comm.set_bass,
     "/treble": speaker_comm.set_treble,
-    "/balance": speaker_comm.set_balance
+    "/balance": speaker_comm.set_balance,
+    "/get": speaker_comm.placeholder
 }
 
 
@@ -62,6 +62,10 @@ def on_connect(client, userdata, flags, reason_code, properties):
 
 def on_publish(client, userdata, mid, reason_code, properties):
     log.debug(f"message published {mid}")
+
+
+def placeholder(value):
+    log.debug(value)
 
 
 def get_client():
