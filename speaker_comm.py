@@ -225,3 +225,7 @@ def write_settings(saved_settings):
 
 def get_settings():
     return settings
+
+
+def placeholder(value):
+    logging.debug(value)
