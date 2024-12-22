@@ -19,6 +19,7 @@ functions = {
     "/bass": speaker_comm.set_bass,
     "/treble": speaker_comm.set_treble,
     "/balance": speaker_comm.set_balance,
+    "/input": speaker_comm.set_input,
     "/get": speaker_comm.placeholder
 }
 
